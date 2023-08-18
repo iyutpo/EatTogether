@@ -1,4 +1,5 @@
 import React from 'react';
+import * as ReactDOM from 'react-dom';
 
 
 function RestaurantSearch ({
@@ -20,6 +21,12 @@ function RestaurantSearch ({
         </div>
     )
 }
+
+
+ReactDOM.render(
+    <h1 id='hel'>hello worldas</h1>, 
+    document.getElementById('hel'),
+)
 
 export default RestaurantSearch;
 

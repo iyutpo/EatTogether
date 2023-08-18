@@ -1,35 +1,33 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import './App.css';
-import UserProfile from './components/UserProfile';
-import RestaurantSearch from './components/RestaurantSearch';
-import EventCalendar from './components/EventCalendar';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
-function App() {
-  const [userPreferences, setUserPreferences] = useState({});
-  const [userRequirements, setUserRequirements] = useState({});
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [events, setEvents] = useState([]);
 
-  return (
-    <div className="App">
-      <h1>EatTogether App</h1>
-      <UserProfile
-        userPreferences={userPreferences}
-        setUserPreferences={setUserPreferences}
-        userRequirements={userRequirements}
-        setUserRequirements={setUserRequirements}
-      />
-      <RestaurantSearch
-        userPreferences={userPreferences}
-        userRequirements={userRequirements}
-        selectedLocation={selectedLocation}
-        setSelectedLocation={setSelectedLocation}
-        events={events}
-      />
-      <EventCalendar events={events} setEvents={setEvents} />
-    </div>
-  );
-}
 
-export default App;
+
+
+
+
+
+
+
+
+// function App() {
+//   return (
+//     <Router>
+//       <nav>
+//         <Link to="/">Home</Link>
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+  
+
+// export default App;
