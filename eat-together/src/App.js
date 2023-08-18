@@ -8,7 +8,8 @@ import Signup from './components/Signup';
 
 
 
-
+// ref: https://rn.mobile.ant.design/docs/react/introduce
+// ref: https://landing.ant.design/docs/use/create-react-app-cn
 
 
 
