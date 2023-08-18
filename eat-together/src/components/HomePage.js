@@ -1,82 +1,116 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import '../index.css';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Button, theme } from 'antd';
-const { Header, Sider, Content } = Layout;
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
 
 
+const nav_labels = {
+    '1': 'Home',
+    '2': 'Start a Dinner',
+    '3': 'Search', 
+}
+const subnav_labels = {
+    '1': 'Profile',
+    '2': 'Manage Events', 
+    '3': 'Social Media', 
+}
+const items1 = ['1', '2', '3'].map((key) => ({
+  key,
+  label: nav_labels[key],
+}));
+const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
+  const key = String(index + 1);
+  return {
+    key: `sub${key}`,
+    icon: React.createElement(icon),
+    label: subnav_labels[key],
+    children: new Array(3).fill(null).map((_, j) => {
+      const subKey = index * 3 + j + 1;
+      return {
+        key: subKey,
+        label: `option${subKey}`,
+      };
+    }),
+  };
+});
 
 const HomePage = () => {
-  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
-        />
-      </Sider>
-      <Layout>
-        <Header
+      <Header
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <div className="demo-logo" />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} items={items1} />
+      </Header>
+      <Content
+        style={{
+          padding: '0 50px',
+        }}
+      >
+        <Breadcrumb
           style={{
-            padding: 0,
+            margin: '16px 0',
+          }}
+        >
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          {/* <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item> */}
+        </Breadcrumb>
+        <Layout
+          style={{
+            padding: '24px 0',
             background: colorBgContainer,
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
+          <Sider
             style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
+              background: colorBgContainer,
             }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Content
-        </Content>
-      </Layout>
+            width={200}
+          >
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              defaultOpenKeys={['sub1']}
+              style={{
+                height: '100%',
+              }}
+              items={items2}
+            />
+          </Sider>
+          <Content
+            style={{
+              padding: '0 24px',
+              minHeight: 280,
+            }}
+          >
+            Content
+          </Content>
+        </Layout>
+      </Content>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        Ant Design ©2023 Created by Ant UED
+      </Footer>
     </Layout>
   );
 };
 export default HomePage;
+
+
+
 
 
 // function HomePage() {
