@@ -93,9 +93,9 @@ const onChange = (pagination, filters, sorter, extra) => {
 
 
 // define the functional component:
-const UserProfile = () => <Table columns={columns} dataSource={data} onChange={onChange} />;
+const FoodPreference = () => <Table columns={columns} dataSource={data} onChange={onChange} />;
 
 
 
 
-export default UserProfile;
+export default FoodPreference;
